@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -21,6 +21,12 @@
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
         </div>
 
         <div>
@@ -45,6 +51,30 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="title" :value="__('Title')" />
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $user->profile->title ?? '')" required autofocus autocomplete="title" />
+            <x-input-error class="mt-2" :messages="$errors->get('title')" />
+        </div>
+
+        <div>
+            <x-input-label for="description" :value="__('description')" />
+            <x-text-input id="description" name="description" type="text" class="mt-1 block w-full" :value="old('description', $user->profile->description ?? '')" required autofocus autocomplete="description" />
+            <x-input-error class="mt-2" :messages="$errors->get('description')" />
+        </div>
+
+        <div>
+            <x-input-label for="url" :value="__('Url')" />
+            <x-text-input id="url" name="url" type="text" class="mt-1 block w-full" :value="old('url', $user->profile->url ?? '')" required autofocus autocomplete="url" />
+            <x-input-error class="mt-2" :messages="$errors->get('url')" />
+        </div>
+
+        <div class="mb-4">
+                <x-input-label for="image" :value="__('Profile Image')" />
+                <x-text-input id="image" class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:border-blue-500 mt-1" type="file" name="image" :value="old('image')"  autofocus autocomplete="image" />
+                <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">

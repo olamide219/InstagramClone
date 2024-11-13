@@ -44,4 +44,7 @@
             </x-primary-button>
         </div>
     </form>
+    <div class="flex items-center justify-end mt-1">
+    <p class="text-sm">Don't have an account yet? <a href="/register" class="text-gray-500 hover:underline ml-1">Register now</a></p>
+    </div>
 </x-guest-layout>
